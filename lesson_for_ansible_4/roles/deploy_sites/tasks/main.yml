@@ -10,7 +10,7 @@
   file: path=/etc/nginx/sites-available/default state=absent
       
 - name: Copy wit my Ubuntu server nginx vhost
-  copy: src={{ conf_file }} dest={{ nginx_sites }}
+  copy: src=default dest={{ nginx_sites }}
   notify: restart nginx
       
 - name: Delete default nginx vhost symlink
@@ -18,8 +18,8 @@
 
 - name: Create symlink nginx vhost
   file:
-    src={{ nginx_sites }}/{{ conf_file }}
-    dest=/etc/nginx/sites-enabled/{{ conf_file }}
+    src=/etc/nginx/sites-enabled/default
+    dest=/etc/nginx/sites-enabled/default
     state=link
   notify: restart nginx
 
