@@ -1,0 +1,4 @@
+---
+# defaults file for deploy_sites
+nginx_sites: /etc/nginx/sites-available/
+conf_file: ./default.conf

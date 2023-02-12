@@ -1,0 +1,60 @@
+#  завдання "знайомство з налаштуванням nginx та різними плейбуками"
+# ОС Убунта
+# - Встановити nginx
+# - скопіювати index.html з написом "русні Пізда" (папка куди тре копіювати
+#  може бути інша) 
+# - скопіювати ще один файл index.html з написом "100 00 хорошіх узкіх" в 
+# папку /home/ubuntu/russnya 
+# - запустити вебсервер
+# перевірити чи працює та побачити чи напис показується
+# ############
+# написати ще один плейбук в якому буде змінюватися папка в яку дивиться 
+# nginx, а точніше в ньому мають бути такі таски
+# - зміна конфігурації nginx 
+# - таска яка робить паузу на 2 хв, в цей момент подивитися який напис на
+#  сторінці показує
+# - перезапустити nginx
+# та ще раз перевірити який напис на сторінці
+
+# додатково потрібно подивитися трохи про конфігурацію nginx та записати
+#  які виникнуть питання)))
+
+
+---
+- name: Playbook for Ubuntu
+  hosts: linux1
+  become: yes
+
+  roles:
+     - configure_web_server
+     - deploy_sites
+  # vars:
+  #  source_file_first: ./mywebsite/index.html
+  #  destin_file_first: /var/www/html/index.html
+  #  source_file_second: ./mywebsite/index2.html
+  #  destin_file_second: /var/www/russnya/index.html
+
+  # tasks:
+  # - name: Install nginx for Ubuntu
+  #   apt: name=nginx state=latest
+
+  # - name: ansible create directory with mode setting example
+  #   file:
+  #     path: /var/www/russnya
+  #     state: directory
+  #     mode: "655"
+ 
+  # - name: Copy HomePage file to Web Server
+  #   copy: src={{ source_file_first }} dest={{ destin_file_first }}
+
+  # - name: Copy HomePage file to Web Server
+  #   copy: src={{ source_file_second }} dest={{ destin_file_second }}
+
+  # - name: Start Web Server service for Ubuntu
+  #   service: name=nginx state=started enabled=yes
+
+  # handlers:
+  # - name: Restart nginx Ubuntu
+  #   service: name=nginx state=started enabled=yes  
+
+# \\wsl$

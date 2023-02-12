@@ -1,0 +1,28 @@
+---
+# tasks file for deploy_sites
+
+- name: Delete default nginx vhost
+  file:
+    path={{ nginx_sites }}/default
+    state=absent
+
+- name: Delete default nginx vhost symlink
+  file: path=/etc/nginx/sites-available/default state=absent
+      
+- name: Copy wit my Ubuntu server nginx vhost
+  copy: src={{ conf_file }} dest={{ nginx_sites }}
+  notify: restart nginx
+      
+- name: Delete default nginx vhost symlink
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+- name: Create symlink nginx vhost
+  file:
+    src={{ nginx_sites }}/{{ conf_file }}
+    dest=/etc/nginx/sites-enabled/{{ conf_file }}
+    state=link
+  notify: restart nginx
+
+- name: sleep for 30 seconds and continue with play
+  wait_for: 
+    timeout: 30

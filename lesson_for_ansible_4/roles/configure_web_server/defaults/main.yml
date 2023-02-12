@@ -1,0 +1,9 @@
+---
+# defaults file for deploy_nginx_web
+
+# source_file_first: ./mywebsite/index.html
+destin_file_first: /var/www/html/index.html
+# source_file_second: ./mywebsite/index2.html
+destin_file_second: /var/www/russnya/index.html
+# nginx_sites: /etc/nginx/sites-available/
+# conf_file: ./default.conf
